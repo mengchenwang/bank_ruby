@@ -28,6 +28,11 @@ describe Bank do
       expect(account).to receive(:withdraw).with(100)
       bank.withdraw(account, 100)
     end
+
+    it 'calls the record_transaction method in account' do
+      expect(account).to receive(:record_transaction).with(nil, 100)
+      bank.withdraw(account, 100)
+    end
   end
 
 end

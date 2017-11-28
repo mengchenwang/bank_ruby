@@ -9,6 +9,7 @@ class Bank
 
   def withdraw(account, amount)
     account.withdraw(amount)
+    account.record_transaction(nil, amount)
   end
 
 end
