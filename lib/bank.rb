@@ -2,6 +2,8 @@ require_relative 'account'
 
 class Bank
 
+  STATEMENT_HEADER = { date: "Date", credit: "Credit", debit: "Debit", balance: "Balance" }
+
   def deposit(account, amount)
     account.deposit(amount)
     account.record_transaction(amount, nil)
@@ -12,4 +14,11 @@ class Bank
     account.record_transaction(nil, amount)
   end
 
+  def print_statement(account)
+    statement = (account.transactions << STATEMENT_HEADER)
+    statement.reverse.each do |transaction|
+      puts "#{transaction[:date]} || #{transaction[:credit]} || " +
+           "#{transaction[:debit]} || #{transaction[:balance]}"
+    end
+  end
 end

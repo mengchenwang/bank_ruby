@@ -35,4 +35,13 @@ describe Bank do
     end
   end
 
+  describe '#print_statement' do
+    it 'print the statement to command line' do
+      allow(account).to receive(:transactions).and_return([{ date: "01/01/2018", credit: nil, debit: 100, balance: 100 }])
+      formated_statement = "Date || Credit || Debit || Balance\n" +
+                           "01/01/2018 ||  || 100 || 100\n"
+      expect { bank.print_statement(account) }.to output(formated_statement).to_stdout
+    end
+  end
+
 end
