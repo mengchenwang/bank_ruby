@@ -10,6 +10,7 @@ class Bank
   end
 
   def withdraw(account, amount)
+    raise "not enough balance" if account.balance_too_low?(account, amount)
     account.withdraw(amount)
     account.record_transaction(nil, amount)
   end

@@ -9,6 +9,7 @@ describe Bank do
     allow(account).to receive(:deposit)
     allow(account).to receive(:withdraw)
     allow(account).to receive(:record_transaction)
+    allow(account).to receive(:balance_too_low?).and_return false
   end
 
   describe '#deposit' do
@@ -25,13 +26,20 @@ describe Bank do
 
   describe '#withdraw' do
     it 'calls the withdraw method in account' do
+      bank.deposit(account, 100)
       expect(account).to receive(:withdraw).with(100)
       bank.withdraw(account, 100)
     end
 
     it 'calls the record_transaction method in account' do
+      bank.deposit(account, 100)
       expect(account).to receive(:record_transaction).with(nil, 100)
       bank.withdraw(account, 100)
+    end
+
+    it 'raises an error if balance goes into nagative after withdraw' do
+      allow(account).to receive(:balance_too_low?).and_return true
+      expect{ bank.withdraw(account, 100) }.to raise_error "not enough balance"
     end
   end
 
