@@ -20,4 +20,8 @@ class Account
     date = Time.now.strftime("%d/%m/%Y")
     @transactions << { date: date, credit: credit, debit: debit, balance: @balance }
   end
+
+  def balance_too_low?(amount)
+    @balance - amount < 0
+  end
 end

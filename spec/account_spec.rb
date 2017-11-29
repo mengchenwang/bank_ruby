@@ -27,4 +27,10 @@ describe Account do
       expect { account.record_transaction(100, nil) }.to change { account.transactions }.to(record)
     end
   end
+
+  describe '#balance_too_low?' do
+    it 'returns true when balance goes into negative' do
+      expect(account.balance_too_low?(100)).to eq true
+    end
+  end
 end
