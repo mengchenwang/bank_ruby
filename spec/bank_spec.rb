@@ -51,5 +51,4 @@ describe Bank do
       expect { bank.print_statement(account) }.to output(formated_statement).to_stdout
     end
   end
-
 end

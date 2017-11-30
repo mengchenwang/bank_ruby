@@ -22,4 +22,8 @@ class Bank
            "#{transaction[:debit]} || #{transaction[:balance]}"
     end
   end
+
+  def print_balance(account)
+    puts "#{account.balance}"
+  end
 end
