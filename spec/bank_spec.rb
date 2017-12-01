@@ -51,4 +51,10 @@ describe Bank do
       expect { bank.print_statement(account) }.to output(formated_statement).to_stdout
     end
   end
+
+  describe '#print_balance' do
+    it 'prints the balance of the account' do
+      expect { bank.print_balance(account) }.to output("0").to_stdout
+    end
+  end
 end
